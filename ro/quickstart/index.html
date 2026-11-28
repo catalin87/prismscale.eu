@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#090e1b">
+<meta name="description" content="Documentația SDK descrie versiunile, exemplele și ghidurile de operare aplicabile.">
+<title>Ghid rapid · PrismScale</title>
+<meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://prismscale.eu/ro/quickstart/">
+  <link rel="alternate" hreflang="en" href="https://prismscale.eu/quickstart/">
+<link rel="alternate" hreflang="ro" href="https://prismscale.eu/ro/quickstart/">
+  <link rel="alternate" hreflang="x-default" href="https://prismscale.eu/quickstart/">
+  <meta property="og:title" content="Ghid rapid · PrismScale"><meta property="og:description" content="Documentația SDK descrie versiunile, exemplele și ghidurile de operare aplicabile.">
+<link rel="stylesheet" href="/style.css">
+<script src="/content.js" defer></script>
+<script src="/app.js" defer></script>
+</head>
+<body data-page="quickstart">
+<a class="skip" href="#main">Sari la conținut</a>
+<header><div class="shell nav">
+<a class="brand" href="/ro/"><i class="mark" aria-hidden="true"></i>PrismScale</a>
+<button class="menu" type="button" aria-expanded="false" aria-controls="navlinks">Meniu</button>
+<nav id="navlinks" aria-label="Navigare principală"><a href="/ro/ai-firewall/">AI Firewall</a><a href="/ro/compliance/">Conformitate</a><a href="/ro/architecture/">Arhitectură</a><a href="/ro/trust-center/">Trust Center</a><a href="/ro/quickstart/" aria-current="page">Ghid rapid</a></nav>
+<div class="nav-actions"><a class="language" href="/quickstart/" lang="en">EN</a><a class="button primary demo-link" href="/ro/book-a-demo/">Programează un demo</a></div>
+</div></header>
+<main id="main" tabindex="-1"><div class="detail-page quickstart-page">
+ <section class="shell inner-title"><span class="kicker">Ghid rapid</span><h1>Rulează o conversație AI protejată în Java.</h1><p>Exemplul Spring Boot îți arată cererea protejată, operațiunea propusă de model și decizia pe care o ia aplicația înainte de a permite o modificare.</p><div class="flow firewall-outcomes"><article class="card"><h2>Pornește de la un flux funcțional</h2><p>Rulează testele de referință cu date sintetice. Simulatorul local nu cere o cheie de model.</p></article><article class="card"><h2>Vezi ce rămâne în aplicația ta</h2><p>Aplicația furnizează identitatea și controlează accesul, aprobările și tranzacțiile.</p></article><article class="card"><h2>Verifică înainte de apeluri live</h2><p>Confirmă versiunea SDK, Java, frameworkul și profilul de furnizor pe care le vei instala.</p></article></div></section>
+ <section class="shell firewall-depth quickstart-run"><span class="kicker">Verificare din surse · simulator local de furnizor</span><h2>Pregătește mediul local</h2><p>Ai nevoie de sursele PrismScale, Java 17 sau 21 și Maven Wrapper din proiect. Rulează comenzile din rădăcina surselor. La primul build Maven are nevoie de acces la dependențe.</p>
+ <section class="quick-command"><h3>1. Instalează modulele SDK local</h3><p>Comenzile instalează artefactele în repository-ul Maven local, de unde le va rezolva aplicația de referință.</p><div class="command-frame"><button type="button" class="button" data-copy-command>Copiază comanda</button><pre tabindex="0"><code>(cd agent &amp;&amp; ./mvnw -B -DskipTests install)
+(cd agent/spring-prism-pro &amp;&amp; ./mvnw -B -DskipTests install)</code></pre></div><span class="copy-feedback" role="status"></span></section>
+ <section class="quick-command"><h3>2. Verifică exemplul Spring Boot</h3><p>Suita de referință simulează răspunsurile modelului și folosește date de business sintetice.</p><div class="command-frame"><button type="button" class="button" data-copy-command>Copiază comanda</button><pre tabindex="0"><code>(cd examples/boot-protected-conversation &amp;&amp; ./mvnw -B verify)</code></pre></div><span class="copy-feedback" role="status"></span></section>
+ <section class="quick-command"><h3>3. Inspectează rezultatele</h3><p>Ce arată o verificare reușită</p><dl class="explainer"><div><dt>Cerere protejată</dt><dd>Simulatorul de model primește reprezentarea permisă de politica configurată.</dd></div><div><dt>Propunere și aprobare</dt><dd>Gazda verifică accesul la resursă. Cererea în așteptare nu produce efecte până când utilizatorul autorizat confirmă.</dd></div><div><dt>Execuție incertă</dt><dd>Aplicația reconciliază starea înainte să repete o operațiune care ar fi putut avea deja efect.</dd></div></dl></section></section>
+ <section class="shell firewall-depth firewall-dev"><h2>Integrează fluxul în aplicația ta</h2><ol><li><h3>Configurează un profil de furnizor suportat</h3><p>Confirmă compatibilitatea versiunii pe care o integrezi. Păstrează datele de autentificare ale furnizorului în aplicație.</p></li><li><h3>Furnizează HostContext autentificat</h3><p>Preia tenantul, utilizatorul și conversația din sesiunea aplicației. Înregistrează operațiuni cu argumente limitate și autorizare explicită a resurselor.</p></li><li><h3>Verifică efectul și răspunsul</h3><p>Testează minimizarea datelor, refuzul și aprobarea pe starea aplicației tale. Protejează răspunsul pentru destinatarul autorizat și păstrează datele brute în afara logurilor.</p></li></ol><a class="text-link" href="/ro/trust-center/">Vezi dovezile de compatibilitate →</a></section></div></main>
+<footer><div class="shell foot"><a class="brand" href="/ro/"><i class="mark" aria-hidden="true"></i>PrismScale</a><nav aria-label="Subsol" id="footlinks"><a href="/ro/">Pagina principală</a><a href="/ro/ai-firewall/">AI Firewall</a><a href="/ro/compliance/">Conformitate</a><a href="/ro/architecture/">Arhitectură</a><a href="/ro/trust-center/">Trust Center</a><a href="/ro/quickstart/">Ghid rapid</a><a href="/docs/">Documentație</a><a href="/ro/book-a-demo/">Programează un demo</a><a id="public-assistant-link" href="https://assistant.prismscale.eu/" hidden>
+        Deschide asistentul PrismScale</a></nav><small id="footer-note">Securitate și guvernanță AI</small></div></footer>
+<script src="/assistant-visibility.js" defer></script></body>
+</html>

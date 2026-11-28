@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#090e1b">
+<meta name="description" content="SDK-ul Java evaluează politicile în proces și protejează conținutul trimis modelului. Aplicația controlează rolurile, resursele și operațiunile.">
+<title>AI Firewall · PrismScale</title>
+<meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://prismscale.eu/ro/ai-firewall/">
+  <link rel="alternate" hreflang="en" href="https://prismscale.eu/ai-firewall/">
+<link rel="alternate" hreflang="ro" href="https://prismscale.eu/ro/ai-firewall/">
+  <link rel="alternate" hreflang="x-default" href="https://prismscale.eu/ai-firewall/">
+  <meta property="og:title" content="AI Firewall · PrismScale"><meta property="og:description" content="SDK-ul Java evaluează politicile în proces și protejează conținutul trimis modelului. Aplicația controlează rolurile, resursele și operațiunile.">
+<link rel="stylesheet" href="/style.css">
+<script src="/content.js" defer></script>
+<script src="/app.js" defer></script>
+</head>
+<body data-page="firewall">
+<a class="skip" href="#main">Sari la conținut</a>
+<header><div class="shell nav">
+<a class="brand" href="/ro/"><i class="mark" aria-hidden="true"></i>PrismScale</a>
+<button class="menu" type="button" aria-expanded="false" aria-controls="navlinks">Meniu</button>
+<nav id="navlinks" aria-label="Navigare principală"><a href="/ro/ai-firewall/" aria-current="page">AI Firewall</a><a href="/ro/compliance/">Conformitate</a><a href="/ro/architecture/">Arhitectură</a><a href="/ro/trust-center/">Trust Center</a><a href="/ro/quickstart/">Ghid rapid</a></nav>
+<div class="nav-actions"><a class="language" href="/ai-firewall/" lang="en">EN</a><a class="button primary demo-link" href="/ro/book-a-demo/">Programează un demo</a></div>
+</div></header>
+<main id="main" tabindex="-1"><div class="detail-page firewall-page">
+ <section class="shell inner-title"><span class="kicker">AI Firewall</span><h1>Păstrează controlul asupra datelor sensibile și a acțiunilor AI.</h1><p>PrismScale ajută aplicațiile tale Java să protejeze informațiile sensibile înainte să ajungă la model. Dacă modelul propune o acțiune, aplicația ta decide în continuare cine o poate executa.</p><div class="actions"><a class="button primary" href="/ro/book-a-demo/">Programează un demo</a><a class="button" href="/ro/ai-firewall/">Explorează AI Firewall ↗</a></div>
+ <div class="flow firewall-outcomes"><article class="card"><h2>Redu expunerea datelor</h2><p>O conversație obișnuită poate conține date de clienți sau secrete. Aplică politicile locale înainte să trimiți datele furnizorului.</p></article><article class="card"><h2>Preîntâmpină acțiunile neautorizate</h2><p>Asistentul poate propune partajarea unui document sau modificarea unei înregistrări. Aplicația verifică accesul și cere aprobare unde este necesar.</p></article><article class="card"><h2>Păstrează controlul în aplicația ta</h2><p>SDK-ul rulează în serviciul Java. Echipele gestionează politicile și guvernanța separat de conversație.</p></article></div></section>
+ <section class="firewall-architecture"><div class="shell"><h2>Cum se integrează în aplicația ta</h2><p>SDK-ul PrismScale rulează în serviciul Java și inspectează local fluxurile de model și unelte pe care le suportă. Furnizorul primește conținutul permis de politică. Control Plane primește metadatele permise, fără conținutul conversației.</p><a class="text-link" href="/ro/architecture/">Vezi diagrama fluxului de date →</a></div></section>
+ <section class="shell firewall-visual" aria-labelledby="firewall-example-heading">
+ <div class="firewall-example"><div class="example-intro"><span class="kicker">Exemplu sintetic · service desk</span><h2 id="firewall-example-heading">Mai puține date către model. Control asupra acțiunii.</h2><p>Un analist cere ghidul VPN pentru solicitantul tichetului SD-214. Aplicația are nevoie de solicitant pentru partajare, dar politica din exemplu protejează adresa înainte de apelul la model.</p></div>
+ <div class="request-compare"><div><h3>Cererea inițială</h3><p>Partajează ghidul VPN cu dana@example.test pentru tichetul SD-214.</p></div><div><h3>Conținut ilustrativ pentru model</h3><p>Partajează ghidul VPN cu <mark>[EMAIL_REFERENCE]</mark> pentru tichetul SD-214.</p></div></div>
+ <ol class="decision-path"><li><strong>Ce propune modelul</strong><span>Partajarea ghidului VPN pentru SD-214.</span></li><li><strong>Ce decide aplicația</strong><span>Verifică solicitantul și cere aprobare.</span></li><li><strong>Ce se schimbă</strong><span>Zero documente partajate până la aprobare.</span></li></ol>
+ </div></section>
+ <section class="shell firewall-depth"><h2>Controale și responsabilități de securitate</h2><dl class="explainer"><div><dt>SDK-ul PrismScale</dt><dd>Inspectează fluxul configurat, aplică politicile locale și protejează ieșirile suportate.</dd></div><div><dt>Aplicația ta</dt><dd>Furnizează identitatea autentificată, autorizează resursele, obține aprobări explicite și gestionează tranzacțiile și retry-urile.</dd></div><div><dt>Furnizorul modelului</dt><dd>Procesează solicitarea permisă de politică. Retenția și termenii de procesare depind de furnizor și de instalare.</dd></div></dl><a class="text-link" href="/ro/trust-center/">Trust Center →</a></section>
+ <section class="shell firewall-depth firewall-dev"><h2>Integrează în serviciul Java</h2><ol><li><h3>Configurează furnizorul suportat</h3><p>Alege profilul furnizorului și păstrează configurația fixă pentru clientul protejat. Consultă compatibilitatea documentată a SDK-ului și a frameworkului.</p></li><li><h3>Leagă identitatea de operațiuni</h3><p>Construiește HostContext din starea autentificată a aplicației. Înregistrează operațiuni cu limite explicite și folosește ToolAuthorizer pentru acces și ownership.</p></li><li><h3>Gestionează aprobările și rezultatele incerte</h3><p>Tratează explicit TurnResult. Folosește confirmarea din interfața aplicației, idempotency la nivel de business și reconciliere pentru acțiunile cu efecte.</p></li><li><h3>Livrează răspunsul protejat</h3><p>Folosește OutputGuard pentru destinatarul autentificat și destinația autorizată. Ține răspunsurile brute, istoricul și operațiunile în așteptare în afara logurilor.</p></li></ol><a class="button primary" href="/ro/quickstart/">Deschide ghidul Java →</a></section>
+ </div></main>
+<footer><div class="shell foot"><a class="brand" href="/ro/"><i class="mark" aria-hidden="true"></i>PrismScale</a><nav aria-label="Subsol" id="footlinks"><a href="/ro/">Pagina principală</a><a href="/ro/ai-firewall/">AI Firewall</a><a href="/ro/compliance/">Conformitate</a><a href="/ro/architecture/">Arhitectură</a><a href="/ro/trust-center/">Trust Center</a><a href="/ro/quickstart/">Ghid rapid</a><a href="/docs/">Documentație</a><a href="/ro/book-a-demo/">Programează un demo</a><a id="public-assistant-link" href="https://assistant.prismscale.eu/" hidden>
+        Deschide asistentul PrismScale</a></nav><small id="footer-note">Securitate și guvernanță AI</small></div></footer>
+<script src="/assistant-visibility.js" defer></script></body>
+</html>

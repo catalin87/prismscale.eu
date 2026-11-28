@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#090e1b">
+<meta name="description" content="The SDK runs inside the Java application. Your configured provider receives policy-allowed content. The Control Plane receives permitted telemetry and metadata.">
+<title>Architecture · PrismScale</title>
+<meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://prismscale.eu/architecture/">
+  <link rel="alternate" hreflang="en" href="https://prismscale.eu/architecture/">
+<link rel="alternate" hreflang="ro" href="https://prismscale.eu/ro/architecture/">
+  <link rel="alternate" hreflang="x-default" href="https://prismscale.eu/architecture/">
+  <meta property="og:title" content="Architecture · PrismScale"><meta property="og:description" content="The SDK runs inside the Java application. Your configured provider receives policy-allowed content. The Control Plane receives permitted telemetry and metadata.">
+<link rel="stylesheet" href="/style.css">
+<script src="/content.js" defer></script>
+<script src="/app.js" defer></script>
+</head>
+<body data-page="architecture">
+<a class="skip" href="#main">Skip to content</a>
+<header><div class="shell nav">
+<a class="brand" href="/"><i class="mark" aria-hidden="true"></i>PrismScale</a>
+<button class="menu" type="button" aria-expanded="false" aria-controls="navlinks">Menu</button>
+<nav id="navlinks" aria-label="Main"><a href="/ai-firewall/">AI Firewall</a><a href="/compliance/">Compliance</a><a href="/architecture/" aria-current="page">Architecture</a><a href="/trust-center/">Trust Center</a><a href="/quickstart/">Quickstart</a></nav>
+<div class="nav-actions"><a class="language" href="/ro/architecture/" lang="ro">RO</a><a class="button primary demo-link" href="/book-a-demo/">Book a technical demo</a></div>
+</div></header>
+<main id="main" tabindex="-1"><div class="detail-page architecture-page">
+ <section class="shell inner-title"><span class="kicker">Architecture</span><h1>Keep AI protection inside your application.</h1><p>PrismScale checks what can go to the model from inside your Java service. Your application still decides who can access a record, share a file or approve a change.</p><div class="actions"><a class="button primary" href="/book-a-demo/">Book a technical demo</a><a class="button" href="/ai-firewall/">Explore AI Firewall ↗</a></div></section>
+ <div class="shell architecture-visual">
+ <h2>Where data flows</h2>
+ <div class="data-map">
+ <div class="data-host"><h3>Java application</h3><div class="data-runtime"><strong>In-process PrismScale SDK</strong><span>Inspect and protect the request</span></div><span class="data-auth">The application authorizes the action</span></div>
+ <div class="data-lanes">
+ <div class="data-lane"><div class="data-arrows"><span>Policy-allowed content <i aria-hidden="true">→</i></span><span>Response or proposal <i aria-hidden="true">←</i></span></div><h3>Model provider</h3></div>
+ <div class="data-lane metadata"><div class="data-arrows"><span>Permitted metadata <i aria-hidden="true">→</i></span><span>Configured policies <i aria-hidden="true">←</i></span></div><h3>Control Plane</h3></div>
+ </div></div></div>
+ <section class="shell firewall-depth arch-explorer"><h2>Explore the three components</h2><div class="walkthrough-controls"><button type="button" class="button" data-arch-step="0" aria-controls="arch-stage" aria-pressed="true">Java application</button><button type="button" class="button" data-arch-step="1" aria-controls="arch-stage" aria-pressed="false">Model provider</button><button type="button" class="button" data-arch-step="2" aria-controls="arch-stage" aria-pressed="false">Control Plane</button></div><div id="arch-stage" aria-live="polite"><div class="arch-component" data-arch-panel="0"><span class="kicker">Java application</span><h3>Where protection and authorization happen</h3><p>The SDK inspects supported requests and tool flows in the same Java process. The host supplies the signed-in identity and checks access to the actual resource. It owns the transaction and its outcome.</p></div><div class="arch-component" data-arch-panel="1" hidden><span class="kicker">Model provider</span><h3>What the model can see and propose</h3><p>Your configured provider receives content allowed by local policy. A model response can propose a tool call. The host evaluates the proposal before any action changes an application record.</p></div><div class="arch-component" data-arch-panel="2" hidden><span class="kicker">Control Plane</span><h3>Where teams manage policy and governance</h3><p>The Control Plane manages policies and governance records and can receive permitted operational metadata. Prompts and model responses use a separate application-to-provider path.</p></div></div></section>
+ <section class="shell reading arch-evidence"><div class="reading-main"><section class="reading-block"><h2>Follow each data boundary</h2><table><thead><tr><th scope="col">Destination</th><th scope="col">What crosses the boundary</th></tr></thead><tbody><tr><th scope="row">Inside the Java process</th><td>Application messages, local policy evaluation and the host authorization context.</td></tr><tr><th scope="row">Configured model provider</th><td>The request permitted by local policy. The provider can return text or propose a tool action.</td></tr><tr><th scope="row">Host tools</th><td>Only supported actions under the host’s resource, identity and approval checks.</td></tr><tr><th scope="row">Control Plane</th><td>Permitted policy and operational metadata. Model conversation payloads stay outside this plane.</td></tr></tbody></table></section></div></section>
+ <section class="shell firewall-depth"><h2>Plan the deployment</h2><dl class="explainer"><div><dt>Hosting</dt><dd>Evaluate hosted and self-hosted Control Plane options separately from the deployment of the Java workload.</dd></div><div><dt>Responsibility</dt><dd>The host owns identity, access checks, business transactions, retries and the effect of tool calls.</dd></div><div><dt>Availability</dt><dd>Validate outage and restart behavior using the exact SDK version and the configuration you intend to deploy.</dd></div></dl></section>
+ <section class="shell firewall-depth firewall-dev"><h2>Integration and operational checks</h2><ol><li><h3>Wire the model boundary</h3><p>Select a supported Java provider profile and configure the request path through the protected client. Verify the final provider-bound shape against synthetic fixtures.</p></li><li><h3>Bind actions to the host</h3><p>Pass authenticated host context, authorize the resource, and implement confirmation and idempotency in the application.</p></li><li><h3>Verify the runtime behavior</h3><p>Inspect model-bound data, permitted telemetry, and the actual effect of allowed and denied requests. Exercise provider failures and restart behavior in your deployment.</p></li></ol><a class="button primary" href="/quickstart/">Open Java Quickstart →</a></section>
+ </div></main>
+<footer><div class="shell foot"><a class="brand" href="/"><i class="mark" aria-hidden="true"></i>PrismScale</a><nav aria-label="Footer" id="footlinks"><a href="/">Home</a><a href="/ai-firewall/">AI Firewall</a><a href="/compliance/">Compliance</a><a href="/architecture/">Architecture</a><a href="/trust-center/">Trust Center</a><a href="/quickstart/">Quickstart</a><a href="/docs/">Documentation</a><a href="/book-a-demo/">Book a technical demo</a><a id="public-assistant-link" href="https://assistant.prismscale.eu/" hidden>
+        Open the PrismScale assistant</a></nav><small id="footer-note">AI security and governance</small></div></footer>
+<script src="/assistant-visibility.js" defer></script></body>
+</html>

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#090e1b">
+<meta name="description" content="SDK-ul rulează în aplicația Java. Furnizorul configurat primește conținutul permis de politică. Control Plane primește telemetria și metadatele permise.">
+<title>Arhitectură · PrismScale</title>
+<meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://prismscale.eu/ro/architecture/">
+  <link rel="alternate" hreflang="en" href="https://prismscale.eu/architecture/">
+<link rel="alternate" hreflang="ro" href="https://prismscale.eu/ro/architecture/">
+  <link rel="alternate" hreflang="x-default" href="https://prismscale.eu/architecture/">
+  <meta property="og:title" content="Arhitectură · PrismScale"><meta property="og:description" content="SDK-ul rulează în aplicația Java. Furnizorul configurat primește conținutul permis de politică. Control Plane primește telemetria și metadatele permise.">
+<link rel="stylesheet" href="/style.css">
+<script src="/content.js" defer></script>
+<script src="/app.js" defer></script>
+</head>
+<body data-page="architecture">
+<a class="skip" href="#main">Sari la conținut</a>
+<header><div class="shell nav">
+<a class="brand" href="/ro/"><i class="mark" aria-hidden="true"></i>PrismScale</a>
+<button class="menu" type="button" aria-expanded="false" aria-controls="navlinks">Meniu</button>
+<nav id="navlinks" aria-label="Navigare principală"><a href="/ro/ai-firewall/">AI Firewall</a><a href="/ro/compliance/">Conformitate</a><a href="/ro/architecture/" aria-current="page">Arhitectură</a><a href="/ro/trust-center/">Trust Center</a><a href="/ro/quickstart/">Ghid rapid</a></nav>
+<div class="nav-actions"><a class="language" href="/architecture/" lang="en">EN</a><a class="button primary demo-link" href="/ro/book-a-demo/">Programează un demo</a></div>
+</div></header>
+<main id="main" tabindex="-1"><div class="detail-page architecture-page">
+ <section class="shell inner-title"><span class="kicker">Arhitectură</span><h1>Protecția AI rulează în aplicația ta.</h1><p>PrismScale verifică din serviciul Java ce poate ajunge la model. Aplicația decide în continuare cine poate consulta o înregistrare, partaja un fișier sau aproba o modificare.</p><div class="actions"><a class="button primary" href="/ro/book-a-demo/">Programează un demo</a><a class="button" href="/ro/ai-firewall/">Explorează AI Firewall ↗</a></div></section>
+ <div class="shell architecture-visual">
+ <h2>Unde circulă datele</h2>
+ <div class="data-map">
+ <div class="data-host"><h3>Aplicația Java</h3><div class="data-runtime"><strong>PrismScale SDK în proces</strong><span>Verifică și protejează cererea</span></div><span class="data-auth">Aplicația autorizează acțiunea</span></div>
+ <div class="data-lanes">
+ <div class="data-lane"><div class="data-arrows"><span>Conținut permis <i aria-hidden="true">→</i></span><span>Răspuns sau propunere <i aria-hidden="true">←</i></span></div><h3>Furnizorul modelului</h3></div>
+ <div class="data-lane metadata"><div class="data-arrows"><span>Metadate permise <i aria-hidden="true">→</i></span><span>Politici configurate <i aria-hidden="true">←</i></span></div><h3>Control Plane</h3></div>
+ </div></div></div>
+ <section class="shell firewall-depth arch-explorer"><h2>Explorează cele trei componente</h2><div class="walkthrough-controls"><button type="button" class="button" data-arch-step="0" aria-controls="arch-stage" aria-pressed="true">Aplicația Java</button><button type="button" class="button" data-arch-step="1" aria-controls="arch-stage" aria-pressed="false">Furnizorul modelului</button><button type="button" class="button" data-arch-step="2" aria-controls="arch-stage" aria-pressed="false">Control Plane</button></div><div id="arch-stage" aria-live="polite"><div class="arch-component" data-arch-panel="0"><span class="kicker">Aplicația Java</span><h3>Unde se fac verificările și autorizarea</h3><p>SDK-ul inspectează solicitările și operațiunile suportate în același proces Java. Aplicația furnizează identitatea autentificată și verifică accesul la resursă. Tot ea gestionează tranzacția și rezultatul.</p></div><div class="arch-component" data-arch-panel="1" hidden><span class="kicker">Furnizorul modelului</span><h3>Ce vede și ce poate propune modelul</h3><p>Furnizorul configurat primește conținutul permis de politica locală. Modelul poate propune o operațiune. Aplicația verifică propunerea înainte să modifice vreo înregistrare.</p></div><div class="arch-component" data-arch-panel="2" hidden><span class="kicker">Control Plane</span><h3>Unde echipa gestionează politicile și guvernanța</h3><p>Control Plane gestionează politicile și înregistrările de guvernanță și poate primi metadatele operaționale permise. Prompturile și răspunsurile circulă separat, între aplicație și furnizor.</p></div></div></section>
+ <section class="shell reading arch-evidence"><div class="reading-main"><section class="reading-block"><h2>Ce trece prin fiecare zonă</h2><table><thead><tr><th scope="col">Destinație</th><th scope="col">Date</th></tr></thead><tbody><tr><th scope="row">În procesul Java</th><td>Mesajele aplicației, evaluarea locală a politicii și contextul de autorizare al gazdei.</td></tr><tr><th scope="row">Furnizorul modelului</th><td>Cererea permisă de politica locală. Furnizorul poate răspunde sau propune o operațiune.</td></tr><tr><th scope="row">Operațiunile aplicației</th><td>Acțiuni acceptate de gazdă în funcție de identitate, resursă și aprobare.</td></tr><tr><th scope="row">Control Plane</th><td>Metadatele operaționale și de politică permise. Conținutul conversației rămâne în afara acestei zone.</td></tr></tbody></table></section></div></section>
+ <section class="shell firewall-depth"><h2>Planificarea instalării</h2><dl class="explainer"><div><dt>Găzduire</dt><dd>Evaluează Control Plane găzduit sau self-hosted separat de mediul aplicației Java.</dd></div><div><dt>Responsabilitate</dt><dd>Gazda gestionează identitatea, autorizarea, tranzacțiile, retry-urile și efectele acțiunilor.</dd></div><div><dt>Disponibilitate</dt><dd>Verifică întreruperile și restartul pe versiunea SDK și configurația pe care o vei instala.</dd></div></dl></section>
+ <section class="shell firewall-depth firewall-dev"><h2>Integrare și verificări operaționale</h2><ol><li><h3>Configurează traseul către model</h3><p>Alege un profil Java suportat și configurează traseul prin clientul protejat. Verifică forma finală a solicitării către furnizor pe date sintetice.</p></li><li><h3>Leagă acțiunile de aplicație</h3><p>Transmite contextul autentificat, autorizează accesul la resursă și implementează confirmarea și idempotency în aplicație.</p></li><li><h3>Verifică comportamentul la rulare</h3><p>Inspectează datele trimise modelului, telemetria permisă și efectele cererilor aprobate sau refuzate. Verifică erorile furnizorului și restartul în mediul de instalare.</p></li></ol><a class="button primary" href="/ro/quickstart/">Deschide ghidul Java →</a></section>
+ </div></main>
+<footer><div class="shell foot"><a class="brand" href="/ro/"><i class="mark" aria-hidden="true"></i>PrismScale</a><nav aria-label="Subsol" id="footlinks"><a href="/ro/">Pagina principală</a><a href="/ro/ai-firewall/">AI Firewall</a><a href="/ro/compliance/">Conformitate</a><a href="/ro/architecture/">Arhitectură</a><a href="/ro/trust-center/">Trust Center</a><a href="/ro/quickstart/">Ghid rapid</a><a href="/docs/">Documentație</a><a href="/ro/book-a-demo/">Programează un demo</a><a id="public-assistant-link" href="https://assistant.prismscale.eu/" hidden>
+        Deschide asistentul PrismScale</a></nav><small id="footer-note">Securitate și guvernanță AI</small></div></footer>
+<script src="/assistant-visibility.js" defer></script></body>
+</html>
